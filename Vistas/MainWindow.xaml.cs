@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,25 @@ namespace Vistas
     /// <summary>
     /// Lógica de interacción para MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void btn_agregar_cliente_Click(object sender, RoutedEventArgs e)
+        {
+            addCliente addCliente = new addCliente();
+            addCliente.Owner = this;
+            addCliente.ShowDialog();
+        }
+
+        private void btn_agregar_contrato_Click(object sender, RoutedEventArgs e)
+        {
+            addContrato addContrato = new addContrato();
+            addContrato.Owner = this;
+            addContrato.ShowDialog();
         }
     }
 }
