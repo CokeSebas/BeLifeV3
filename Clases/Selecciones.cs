@@ -26,11 +26,11 @@ namespace Clases
             return listMar;
         }
 
-        public string[] listModelo()
+        /*public string[] listModelo()
         {
             string[] listMod = conec.listSelec("ModeloVehiculo");
             return listMod;
-        }
+        }*/
 
         public string[] listTipoCont()
         {

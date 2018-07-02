@@ -98,17 +98,30 @@ namespace Clases
             registros = comando.ExecuteReader();
 
             if (registros.Read()) {
-
+                string sql = "";
                 listaSelec = new string[int.Parse(registros["count"].ToString())];
                 cerraConexion();
-                string sql = "SELECT Descripcion FROM " + tabla;
+                if (tabla == "Region"){
+                    sql = "SELECT NombreRegion FROM " + tabla;
+                }else{
+                    sql = "SELECT Descripcion FROM " + tabla;
+                }
+                
                 abrirConexion();
                 comando = new SqlCommand(sql, cn);
                 registros = comando.ExecuteReader();
 
                 while (registros.Read())
                 {
-                    listaSelec[x] = registros["descripcion"].ToString();
+                    if (tabla == "Region")
+                    {
+                        listaSelec[x] = registros["NombreRegion"].ToString();
+                    }
+                    else
+                    {
+                        listaSelec[x] = registros["Descripcion"].ToString();
+                    }
+                    
                     x++;
                 }
             }
@@ -198,6 +211,41 @@ namespace Clases
             return listaSelec;
         }
 
+
+        public string[] listModelo(int idModelo)
+        {
+            string[] listaSelec;
+            int x = 0;
+            listaSelec = new String[1];
+            abrirConexion();
+
+            string sql1 = "SELECT COUNT(*) AS count FROM ModeloVehiculo mv " +
+                          "JOIN MarcaModeloVehiculo mdv ON (mv.IdModelo = mdv.IdModelo) " +
+                          "WHERE mdv.IdMarca = " + idModelo;
+            comando = new SqlCommand(sql1, cn);
+            registros = comando.ExecuteReader();
+
+            if (registros.Read())
+            {
+
+                listaSelec = new string[int.Parse(registros["count"].ToString())];
+                cerraConexion();
+                string sql = "SELECT mv.Descripcion FROM ModeloVehiculo mv " +
+                             "JOIN MarcaModeloVehiculo mdv ON (mv.IdModelo = mdv.IdModelo) " +
+                             "WHERE mdv.IdMarca = " + idModelo;
+                abrirConexion();
+                comando = new SqlCommand(sql, cn);
+                registros = comando.ExecuteReader();
+
+                while (registros.Read())
+                {
+                    listaSelec[x] = registros["Descripcion"].ToString();
+                    x++;
+                }
+            }
+            return listaSelec;
+        }
+
         public string[] listPlan(int tipoCont) {
             string[] listaSelec;
             int x = 0;
@@ -208,9 +256,7 @@ namespace Clases
             comando = new SqlCommand(sql1, cn);
             registros = comando.ExecuteReader();
 
-            if (registros.Read())
-            {
-
+            if (registros.Read()){
                 listaSelec = new string[int.Parse(registros["count"].ToString())];
                 cerraConexion();
                 string sql = "SELECT Nombre FROM [Plan] WHERE IdTipoContrato = " + tipoCont;
@@ -235,7 +281,7 @@ namespace Clases
             listaSelec = new String[1];
             abrirConexion();
 
-            string sql1 = "SELECT COUNT(*) FROM Comuna c JOIN RegionComuna rg ON (c.idComuna = rg.idComuna) WHERE rg.idRegion ="+idRegion;
+            string sql1 = "SELECT COUNT(*) AS count FROM Comuna c JOIN RegionComuna rg ON (c.idComuna = rg.idComuna) WHERE rg.idRegion ="+idRegion;
             comando = new SqlCommand(sql1, cn);
             registros = comando.ExecuteReader();
 
@@ -249,7 +295,7 @@ namespace Clases
                 registros = comando.ExecuteReader();
 
                 while (registros.Read()){
-                    listaSelec[x] = registros["Nombre"].ToString();
+                    listaSelec[x] = registros["NombreComuna"].ToString();
                     x++;
                 }
             }

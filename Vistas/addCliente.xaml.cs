@@ -102,5 +102,10 @@ namespace Vistas
         private void btnCerrar_Click(object sender, RoutedEventArgs e)
         {
         }
+
+        private void btnGuardarCli_Click(object sender, RoutedEventArgs e)
+        {
+            guardarClienteAsync();
+        }
     }
 }

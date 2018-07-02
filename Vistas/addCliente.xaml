@@ -21,7 +21,7 @@
         <DatePicker x:Name="dtpFechaNacCli" HorizontalAlignment="Left" Margin="44,181,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cbbSexo" HorizontalAlignment="Left" Margin="233,181,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="cbbEstadoCivil" HorizontalAlignment="Left" Margin="433,181,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnGuardarCli" Content="Guardar" HorizontalAlignment="Left" Margin="72,265,0,0" VerticalAlignment="Top" Width="110" />
+        <Button x:Name="btnGuardarCli" Content="Guardar" HorizontalAlignment="Left" Margin="72,265,0,0" VerticalAlignment="Top" Width="110" Click="btnGuardarCli_Click" />
         <Button x:Name="btnLimpiarCli" Content="Limpiar" HorizontalAlignment="Left" Margin="266,265,0,0" VerticalAlignment="Top" Width="110" Click="btnLimpiarCli_Click"/>
         <Button x:Name="btnCerrar" Content="Cerrar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Margin="443,265,0,0" Click="btnCerrar_Click"/>
 

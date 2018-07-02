@@ -15,10 +15,11 @@ namespace Clases
         private string _fechaInicioVigencia;
         private string _fechaFinVigencia;
         private string _vigente;
-        private string _declaracionSalud;
+        //private string _declaracionSalud;
         private string _primaAnual;
         private string _primaMensual;
         private string _observaciones;
+        private int _tipoContrato;
 
         public string NumeroContrato{
             get{
@@ -91,7 +92,7 @@ namespace Clases
 
             set
             {
-                if (value != "")
+                /*if (value != "")
                 {
                     DateTime fecha_iniv = Convert.ToDateTime(value);
                     int result = DateTime.Compare(fecha_iniv, DateTime.Today);
@@ -107,13 +108,13 @@ namespace Clases
                     }
                     /*}else{
                         throw new Exception("Inicio Vigencia no puede ser menor a la Fecha Actual");
-                    }*/
+                    }
                 }
                 else
                 {
                     throw new Exception("Fecha de nacimiento no puede ser vacia");
-                }
-                //_fechaInicioVigencia = value;
+                }*/
+                _fechaInicioVigencia = value;
             }
         }
 
@@ -143,7 +144,7 @@ namespace Clases
             }
         }
 
-        public string DeclaracionSalud
+        /*public string DeclaracionSalud
         {
             get
             {
@@ -161,7 +162,7 @@ namespace Clases
                     throw new Exception("Debe seleccionar si Declara Salud");
                 }
             }
-        }
+        }*/
 
         public string PrimaAnual
         {
@@ -201,6 +202,21 @@ namespace Clases
                 _observaciones = value;
             }
         }
+
+        public int TipoContrato
+        {
+            get
+            {
+                return _tipoContrato;
+            }
+
+            set
+            {
+                _tipoContrato = value;
+            }
+        }
+
+        public abstract bool agregarContrato();
 
     }
 }
