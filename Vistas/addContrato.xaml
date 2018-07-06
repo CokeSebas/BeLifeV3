@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Vistas"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="Vistas.addContrato"
         mc:Ignorable="d"
-        Title="Añadir Contrato" Height="791.875" Width="725.24">
+        Title="Seguros BeLife - Ingresar Contrato" Height="791.875" Width="725.24">
     <Grid>
         <Canvas Background="Gainsboro" HorizontalAlignment="Left" Height="141" Margin="10,10,0,0" VerticalAlignment="Top" Width="699">
             <Label x:Name="label3_Copy" Content="Rut Cliente" HorizontalAlignment="Left" VerticalAlignment="Top" Width="87" Canvas.Left="47" Canvas.Top="22"/>

@@ -7,23 +7,68 @@
         xmlns:local="clr-namespace:Vistas"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="Vistas.addCliente"
         mc:Ignorable="d"
-        Title="Añadir Cliente" Height="411.506" Width="644.213">
-    <Grid>
-        <Label Content="Rut Cliente:" HorizontalAlignment="Left" Margin="44,37,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtRutCli" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Escriba su Rut" HorizontalAlignment="Left" Height="23" Margin="44,67,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Nombre Cliente:" HorizontalAlignment="Left" Margin="233,37,0,0" VerticalAlignment="Top"/>
-        <Label Content="Apellido Cliente" HorizontalAlignment="Left" Margin="433,37,0,0" VerticalAlignment="Top"/>
-        <Label Content="Fecha Nacimiento:" HorizontalAlignment="Left" Margin="41,133,0,0" VerticalAlignment="Top"/>
-        <Label Content="Sexo:" HorizontalAlignment="Left" Margin="233,133,0,0" VerticalAlignment="Top"/>
-        <Label Content="Estado Civil:" HorizontalAlignment="Left" Margin="433,133,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtNombreCli" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese su Nombre" HorizontalAlignment="Left" Height="23" Margin="233,67,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txtApellidoCli" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese su Apellido" HorizontalAlignment="Left" Height="23" Margin="433,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <DatePicker x:Name="dtpFechaNacCli" HorizontalAlignment="Left" Margin="44,181,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cbbSexo" HorizontalAlignment="Left" Margin="233,181,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="cbbEstadoCivil" HorizontalAlignment="Left" Margin="433,181,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnGuardarCli" Content="Guardar" HorizontalAlignment="Left" Margin="72,265,0,0" VerticalAlignment="Top" Width="110" Click="btnGuardarCli_Click" />
-        <Button x:Name="btnLimpiarCli" Content="Limpiar" HorizontalAlignment="Left" Margin="266,265,0,0" VerticalAlignment="Top" Width="110" Click="btnLimpiarCli_Click"/>
-        <Button x:Name="btnCerrar" Content="Cerrar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Margin="443,265,0,0" Click="btnCerrar_Click"/>
+        Title="Seguros BeLife - Ingresar Cliente" Height="462.329" Width="768.813">
+    <Grid Margin="0,0,3.333,0.333">
+        <Rectangle Fill="#FFC4CAD8" HorizontalAlignment="Left" Height="118" Margin="49,282,0,0" VerticalAlignment="Top" Width="670"/>
+        <GroupBox Header="Datos del Cliente" HorizontalAlignment="Center" Height="227" Margin="9,10,9.667,0" VerticalAlignment="Top" Width="740" Background="#FF837AE5" BorderBrush="#FF865FC5"/>
+        <Label Content="Rut Cliente:" HorizontalAlignment="Left" Margin="282,56,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtRutCli" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese Rut:" HorizontalAlignment="Left" Height="23" Margin="358,56,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="134" BorderBrush="Black"/>
+        <Label Content="Nombre Cliente:" HorizontalAlignment="Left" Margin="289,116,0,0" VerticalAlignment="Top"/>
+        <Label Content="Apellido Cliente:" HorizontalAlignment="Left" Margin="31,116,0,0" VerticalAlignment="Top"/>
+        <Label Content="Fecha Nacimiento:" HorizontalAlignment="Left" Margin="103,176,0,0" VerticalAlignment="Top"/>
+        <Label Content="Sexo:" HorizontalAlignment="Left" Margin="556,115,0,0" VerticalAlignment="Top"/>
+        <Label Content="Estado Civil:" HorizontalAlignment="Left" Margin="437,175,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtNombreCli" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese Nombre" HorizontalAlignment="Left" Height="23" Margin="391,116,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144" BorderBrush="Black"  Background="White" Foreground="#FF24005F"/>
+        <TextBox x:Name="txtApellidoCli" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese Apellido" HorizontalAlignment="Left" Height="23" Margin="128,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" BorderBrush="Black"/>
+        <DatePicker x:Name="dtpFechaNacCli" HorizontalAlignment="Left" Margin="230,174,0,0" VerticalAlignment="Top" BorderBrush="Black" Foreground="#FF2E0E61"/>
+        <ComboBox x:Name="cbbSexo" HorizontalAlignment="Left" Margin="598,115,0,0" VerticalAlignment="Top" Width="137" BorderBrush="Black" Background="White"/>
+        <ComboBox x:Name="cbbEstadoCivil" HorizontalAlignment="Left" Margin="530,177,0,0" VerticalAlignment="Top" Width="141" BorderBrush="Black"/>
+        <Button x:Name="btnGuardarCli" Style="{DynamicResource MetroCircleButtonStyle}" HorizontalAlignment="Left" Height="55" Margin="111,310,0,0" VerticalAlignment="Top" Width="55" Click="btnGuardarCli_Click" BorderBrush="#FF2A006D" Foreground="#FF4001A6">
+            <Button.ToolTip>
+                <ToolTip>
+                    <StackPanel>
+                        <TextBlock FontWeight="Bold"><Run Text="Guardar"/></TextBlock>
+                        <TextBlock><Run Text="Botón que guarda al cliente"/></TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
+            <Rectangle Width="28" Height="30" Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Stretch="UniformToFill" Visual="{StaticResource appbar_save}" />
+                </Rectangle.OpacityMask>
+            </Rectangle>
+        </Button>
+        <Button x:Name="btnLimpiarCli" Style="{DynamicResource MetroCircleButtonStyle}" HorizontalAlignment="Left" Height="55" Margin="358,310,0,0" VerticalAlignment="Top" Width="55" Click="btnLimpiarCli_Click" BorderBrush="#FF2A006D" Foreground="#FF4001A6">
+            <Button.ToolTip>
+                <ToolTip>
+                    <StackPanel>
+                        <TextBlock FontWeight="Bold"><Run Text="Limpiar"/></TextBlock>
+                        <TextBlock><Run Text="Botón para limpiar la ventana"/></TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
+            <Rectangle Width="28" Height="30" Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Stretch="UniformToFill" Visual="{StaticResource appbar_clean}" />
+                </Rectangle.OpacityMask>
+            </Rectangle>
+        </Button>
+        <Button x:Name="btnCerrar" Style="{DynamicResource MetroCircleButtonStyle}" HorizontalAlignment="Left" Height="55" Margin="599,310,0,0" VerticalAlignment="Top" Width="55" Click="btnCerrar_Click" BorderBrush="#FF2A006D" Foreground="#FF4001A6">
+            <Button.ToolTip>
+                <ToolTip>
+                    <StackPanel>
+                        <TextBlock FontWeight="Bold"><Run Text="Cerrar"/></TextBlock>
+                        <TextBlock><Run Text="Botón para cerrar ventana"/></TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
+            <Rectangle Width="28" Height="30" Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_close}" />
+                </Rectangle.OpacityMask>
+            </Rectangle>
+        </Button>
+
 
     </Grid>
 </Controls:MetroWindow>

@@ -1,5 +1,6 @@
 ﻿using Clases;
 using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -126,7 +127,7 @@ namespace Vistas
             cbbSalud.Items.Add("Si");
         }
 
-        public void tipoContrato(){
+        public async void TipoContrato(){
             
             int idTipoCont = cbbTipoCont.SelectedIndex *10;
             /*if (idTipoCont == 10){
@@ -164,7 +165,7 @@ namespace Vistas
                 cnvDatos.Margin = new Thickness(10, 156, 0, 0);
                 lblSalud.Visibility = Visibility.Visible;
                 cbbSalud.Visibility = Visibility.Visible;
-                MessageBox.Show("Recordar que Declaración de salud es Obligatoria", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                await this.ShowMessageAsync("¡Advertencia!", "Recordar que Declaración de salud es Obligatoria");
             }
         }
 
@@ -334,7 +335,7 @@ namespace Vistas
             
         }
 
-        public void buscarCli()
+        public async void buscarCli()
         {
             string rut = txtRutCont.Text;
             bool existe = objCli.validar("Cliente", rut);
@@ -349,13 +350,13 @@ namespace Vistas
             }
             else
             {
-                MessageBox.Show("El Cliente no ha sido Ingresado en la Base de Datos", "Advertencia!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                await this.ShowMessageAsync("Advertencia!", "El Cliente no ha sido ingresado en la Base de Datos");
                 txtNombreCliCon.Clear();
             }
         }
 
         //funciona
-        public void guardarVida(){
+        public async void guardarVida(){
             //try{
                 bool guarda = false;
                 string rutCliente = txtRutCont.Text;
@@ -442,6 +443,7 @@ namespace Vistas
                     guarda = objSalud.agregarContrato();
                     if (guarda == true)
                     {
+                        
                         MessageBox.Show("Contrato de Salud Ingresado", "Confirmacion!", MessageBoxButton.OK, MessageBoxImage.Information);
                         limpiar();
                     }
@@ -452,7 +454,7 @@ namespace Vistas
                 }
                 else
                 {
-                    MessageBox.Show("Mes de inicio de vigencia no puede ser superior a un mes", "Advertencia!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                await this.ShowMessageAsync("Advertencia!", "Mes de inicio de vigencia no puede ser superior a un mes");
                 }
             /*}
             catch (Exception error)
@@ -461,7 +463,7 @@ namespace Vistas
             }*/
         }
 
-        public void guardarVehiculo()
+        public async void guardarVehiculo()
         {
             //try{
                 bool guarda = false;
@@ -554,17 +556,17 @@ namespace Vistas
                     guarda = objVehi.agregarContrato();
                     if (guarda == true)
                     {
-                        MessageBox.Show("Contrato de Vehiculo Ingresado", "Confirmacion!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        await this.ShowMessageAsync("Confirmación!", "Contrato de Vehículo Ingresado");
                         limpiar();
                     }
                     else
                     {
-                        MessageBox.Show("Contrato Ya ha Ingresado", "Advertencia!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        await this.ShowMessageAsync("Advertencia!", "Contrato ya se ingresó");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Mes de inicio de vigencia no puede ser superior a un mes", "Advertencia!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    await this.ShowMessageAsync("Advertencia!", "Mes de inicio de vigencia no puede ser superior a un mes");
                 }
             /*}
             catch (Exception error)
@@ -573,7 +575,7 @@ namespace Vistas
             }*/
         }
 
-        public void guardarHogar()
+        public async void guardarHogar()
         {
             //try{
                 bool guarda = false;
@@ -673,17 +675,17 @@ namespace Vistas
                     guarda = objViv.agregarContrato();
                     if (guarda == true)
                     {
-                        MessageBox.Show("Contrato de Vivienda Ingresado", "Confirmacion!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        await this.ShowMessageAsync("Confirmación!", "Contrato de Vivienda Ingresado");
                         limpiar();
                     }
                     else
                     {
-                        MessageBox.Show("Contrato Ya ha Ingresado", "Advertencia!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        await this.ShowMessageAsync("Advertencia!", "Contrato ya se ha ingresado");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Mes de inicio de vigencia no puede ser superior a un mes", "Advertencia!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    await this.ShowMessageAsync("Advertencia!", "Mes de inicio de vigencia no puede ser superior a un mes");
                 }
             /*}
             catch (Exception error)
@@ -694,7 +696,7 @@ namespace Vistas
 
         private void cbbTipoCont_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            tipoContrato();
+            TipoContrato();
         }
 
         private void cbbMarca_SelectionChanged(object sender, SelectionChangedEventArgs e){

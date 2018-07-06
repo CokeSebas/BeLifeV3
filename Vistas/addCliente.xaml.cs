@@ -99,13 +99,24 @@ namespace Vistas
             limpiar();
         }
 
-        private void btnCerrar_Click(object sender, RoutedEventArgs e)
+        private async void btnCerrar_Click(object sender, RoutedEventArgs e)
         {
+            MessageDialogResult m = await this.ShowMessageAsync("Salir", "¿Seguro desea salir del ingreso de clientes?", MessageDialogStyle.AffirmativeAndNegative);
+            if (m == MessageDialogResult.Affirmative)
+            {
+                this.Hide();
+            }
+            if (m == MessageDialogResult.Negative)
+            {
+                txtRutCli.Clear();
+            }
         }
 
-        private void btnGuardarCli_Click(object sender, RoutedEventArgs e)
+        private async void btnGuardarCli_Click(object sender, RoutedEventArgs e)
         {
-            guardarClienteAsync();
+            await guardarClienteAsync();
         }
+
+        
     }
 }

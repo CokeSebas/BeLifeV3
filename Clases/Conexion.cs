@@ -10,7 +10,7 @@ namespace Clases
 {
     public class Conexion
     {
-        private string cadena = "Server=localhost\\SQLEXPRESS;Database=BeLifeV3;Trusted_Connection=True;";
+        private string cadena = "Server=localhost\\SQLEXPRESS;Database=BeLife;Trusted_Connection=True;";
         public SqlConnection cn;
         private SqlCommandBuilder cmb;
         public DataSet ds = new DataSet();
