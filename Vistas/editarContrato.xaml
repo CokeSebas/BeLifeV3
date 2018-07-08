@@ -8,7 +8,7 @@
            Icon="Images\icono_main.png"
         mc:Ignorable="d"
           
-         Title="Modificar Datos Contrato" Height="630.906" Width="984">
+         Title="Seguros BeLife - Modificar Datos Contrato" Height="630.906" Width="984">
 
     <Grid>
         <Label x:Name="label3" Content="Rut Cliente" HorizontalAlignment="Left" Margin="68,26,0,0" VerticalAlignment="Top" Width="87"/>

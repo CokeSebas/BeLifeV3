@@ -38,7 +38,7 @@
                 </Rectangle.OpacityMask>
             </Rectangle>
         </Button>
-        <Button x:Name="btnLimpiarCli" Style="{DynamicResource MetroCircleButtonStyle}" HorizontalAlignment="Left" Height="55" Margin="358,310,0,0" VerticalAlignment="Top" Width="55" Click="btnLimpiarCli_Click" BorderBrush="#FF2A006D" Foreground="#FF4001A6">
+        <Button x:Name="btnLimpiarCli" Style="{DynamicResource MetroCircleButtonStyle}" HorizontalAlignment="Left" Height="55" Margin="360,310,0,0" VerticalAlignment="Top" Width="55" Click="btnLimpiarCli_Click" BorderBrush="#FF2A006D" Foreground="#FF4001A6">
             <Button.ToolTip>
                 <ToolTip>
                     <StackPanel>
