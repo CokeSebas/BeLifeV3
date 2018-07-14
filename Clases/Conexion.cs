@@ -10,7 +10,7 @@ namespace Clases
 {
     public class Conexion
     {
-        private string cadena = "Server=localhost\\SQLEXPRESS;Database=BeLife;Trusted_Connection=True;";
+        private string cadena = "Server=localhost\\SQLEXPRESS;Database=BeLifeV3;Trusted_Connection=True;";
         public SqlConnection cn;
         private SqlCommandBuilder cmb;
         public DataSet ds = new DataSet();
@@ -19,7 +19,7 @@ namespace Clases
         public SqlDataReader registros;
 
         private List<Cliente> clientes = new List<Cliente>();
-        //private List<Contrato> contratos = new List<Contrato>();
+        private List<Contrato> contratos = new List<Contrato>();
 
         //se conecta con sqlserver
         private void conectar() {
@@ -64,6 +64,7 @@ namespace Clases
         public bool actualizar(string tabla, string campos, string condicion) {
             abrirConexion();
             string sql = "UPDATE " + tabla + " SET " + campos + " WHERE " + condicion;
+            
             comando = new SqlCommand(sql, cn);
             int i = comando.ExecuteNonQuery();
             cerraConexion();
@@ -158,7 +159,8 @@ namespace Clases
             return listaSelec;
         }
 
-        public string[] listRutContrato() {
+        public string[] listRutContrato()
+        {
             string[] listaSelec;
             int x = 0;
             listaSelec = new String[1];
@@ -168,7 +170,8 @@ namespace Clases
             comando = new SqlCommand(sql1, cn);
             registros = comando.ExecuteReader();
 
-            if (registros.Read()) {
+            if (registros.Read())
+            {
                 listaSelec = new string[int.Parse(registros["count"].ToString())];
                 cerraConexion();
                 string sql = "SELECT DISTINCT RutCliente FROM Contrato";
@@ -176,7 +179,8 @@ namespace Clases
                 comando = new SqlCommand(sql, cn);
                 registros = comando.ExecuteReader();
 
-                while (registros.Read()) {
+                while (registros.Read())
+                {
                     listaSelec[x] = registros["RutCliente"].ToString();
                     x++;
                 }
@@ -345,7 +349,6 @@ namespace Clases
 
             if (registros.Read())
             {
-
                 listaSelec = new string[int.Parse(registros["count"].ToString())];
                 cerraConexion();
                 string sql = "SELECT Numero FROM Contrato";
@@ -414,15 +417,13 @@ namespace Clases
 
         public string[] getDatosContrato(string numeroCon, string rutCliente)
         {
-            string[] datos = new string[8];
-
+            string[] datos = new string[9];
             string sql = "SELECT * FROM Contrato WHERE Numero = '" + numeroCon + "' AND RutCliente = '" + rutCliente + "';";
             abrirConexion();
             comando = new SqlCommand(sql, cn);
             registros = comando.ExecuteReader();
             while (registros.Read())
             {
-
                 datos[0] = registros["CodigoPlan"].ToString();
                 datos[1] = registros["FechaInicioVigencia"].ToString();
                 datos[2] = registros["FechaFinVigencia"].ToString();
@@ -431,6 +432,50 @@ namespace Clases
                 datos[5] = registros["PrimaAnual"].ToString();
                 datos[6] = registros["PrimaMensual"].ToString();
                 datos[7] = registros["ObservacioneS"].ToString();
+                datos[8] = registros["idTipoContrato"].ToString();
+            }
+            return datos;
+        }
+
+        public string[] getDatosContratoVeh(string numeroCon)
+        {
+            string[] datos = new string[4];
+            string sql = "SELECT * FROM contratoVehiculo cv " +
+                        "JOIN Vehiculo v ON(cv.Patente = v.Patente) " +
+                        "JOIN ModeloVehiculo mv ON (v.IdModelo = mv.IdModelo)" +
+                         "WHERE cv.numero = '" + numeroCon + "';";
+            abrirConexion();
+            comando = new SqlCommand(sql, cn);
+            registros = comando.ExecuteReader();
+            while (registros.Read())
+            {
+                datos[0] = registros["Patente"].ToString();
+                datos[1] = registros["IdMarca"].ToString();
+                datos[2] = registros["Descripcion"].ToString();
+                datos[3] = registros["Anho"].ToString();
+            }
+            return datos;
+        }
+
+        public string[] getDatosContratoViv(string numeroCon)
+        {
+            string[] datos = new string[7];
+            string sql = "SELECT * FROM Contrato_vivienda cvi " +
+                            "JOIN Vivienda vi ON(cvi.codigoPostal = vi.CodigoPostal) " +
+                            "JOIN Comuna c ON (vi.IdComuna = c.IdComuna)" +
+                            "WHERE cvi.numero = '" + numeroCon + "'; ";
+            abrirConexion();
+            comando = new SqlCommand(sql, cn);
+            registros = comando.ExecuteReader();
+            while (registros.Read())
+            {
+                datos[0] = registros["CodigoPostal"].ToString();
+                datos[1] = registros["Anho"].ToString();
+                datos[2] = registros["Direccion"].ToString();
+                datos[3] = registros["ValorInmueble"].ToString();
+                datos[4] = registros["ValorContenido"].ToString();
+                datos[5] = registros["IdRegion"].ToString();
+                datos[6] = registros["NombreComuna"].ToString();
             }
             return datos;
         }
@@ -473,48 +518,49 @@ namespace Clases
             return clientes;
         }
 
-        /*public List<Contrato> ListarContratos() {
+        public List<Contrato> ListarContratos() {
             string sql = "SELECT * FROM Contrato";
             abrirConexion();
             comando = new SqlCommand(sql, cn);
             registros = comando.ExecuteReader();
 
             while (registros.Read()) {
-                Contrato objCont = new Contrato();
+                Contrato objCont;
+                Salud objSal = new Salud();
                 string vigente, declaracionSalud;
 
-                objCont.NumeroContrato = registros["Numero"].ToString();
+                objSal.NumeroContrato = registros["Numero"].ToString();
                 string fechaCr = registros["FechaCreacion"].ToString();
-                objCont.FechaCreacion = fechaCr.Substring(0, 10);
-                objCont.RutCliente = registros["RutCliente"].ToString();
-                objCont.CodigoPlan = registros["CodigoPlan"].ToString();
+                objSal.FechaCreacion = fechaCr.Substring(0, 10);
+                objSal.RutCliente = registros["RutCliente"].ToString();
+                objSal.CodigoPlan = registros["CodigoPlan"].ToString();
                 string fechaIV = registros["FechaInicioVigencia"].ToString();
-                objCont.FechaInicioVigencia = fechaIV.Substring(0,10);
+                objSal.FechaInicioVigencia = fechaIV.Substring(0,10);
                 string fechaFV = registros["FechaFinVigencia"].ToString();
-                objCont.FechaFinVigencia = fechaFV.Substring(0, 10);
+                objSal.FechaFinVigencia = fechaFV.Substring(0, 10);
 
                 vigente = registros[6].ToString();
                 declaracionSalud = registros[7].ToString();
                 if (vigente == "True") {
-                    objCont.Vigente = "Vigente";
+                    objSal.Vigente = "Vigente";
                 } else if (vigente == "False") {
-                    objCont.Vigente = "Vencido";
+                    objSal.Vigente = "Vencido";
                 }
 
                 if (declaracionSalud == "True") {
-                    objCont.DeclaracionSalud = "Presenta";
+                    objSal.DeclaracionSalud = "Presenta";
                 } else if (declaracionSalud == "False") {
-                    objCont.DeclaracionSalud = "No Presenta";
+                    objSal.DeclaracionSalud = "No Presenta";
                 }
 
-                objCont.PrimaAnual = registros[8].ToString();
-                objCont.PrimaMensual = registros[9].ToString();
-                objCont.Observaciones = registros[10].ToString();
+                objSal.PrimaAnual = registros[8].ToString();
+                objSal.PrimaMensual = registros[9].ToString();
+                objSal.Observaciones = registros[10].ToString();
 
-                contratos.Add(objCont);
+                contratos.Add(objSal);
             }
             return contratos;
-        }*/
+        }
 
         public List<Cliente> filtroClientes(string filtro)
         {
@@ -567,7 +613,7 @@ namespace Clases
             return clientes;
         }
 
-        /*public List<Contrato> filtroContratos(string filtro)
+        public List<Contrato> filtroContratos(string filtro)
         {
             contratos.Clear();
             string sql = "SELECT * FROM Contrato WHERE "+filtro;
@@ -577,47 +623,48 @@ namespace Clases
 
             while (registros.Read())
             {
-                Contrato objCont = new Contrato();
+                Contrato objCont;
+                Salud objSal = new Salud();
                 string vigente, declaracionSalud;
 
-                objCont.NumeroContrato = registros["Numero"].ToString();
+                objSal.NumeroContrato = registros["Numero"].ToString();
                 string fechaCr = registros["FechaCreacion"].ToString();
-                objCont.FechaCreacion = fechaCr.Substring(0, 10);
-                objCont.RutCliente = registros["RutCliente"].ToString();
-                objCont.CodigoPlan = registros["CodigoPlan"].ToString();
+                objSal.FechaCreacion = fechaCr.Substring(0, 10);
+                objSal.RutCliente = registros["RutCliente"].ToString();
+                objSal.CodigoPlan = registros["CodigoPlan"].ToString();
                 string fechaIV = registros["FechaInicioVigencia"].ToString();
-                objCont.FechaInicioVigencia = fechaIV.Substring(0, 10);
+                objSal.FechaInicioVigencia = fechaIV.Substring(0, 10);
                 string fechaFV = registros["FechaFinVigencia"].ToString();
-                objCont.FechaFinVigencia = fechaFV.Substring(0, 10);
+                objSal.FechaFinVigencia = fechaFV.Substring(0, 10);
 
                 vigente = registros[6].ToString();
                 declaracionSalud = registros[7].ToString();
                 if (vigente == "True")
                 {
-                    objCont.Vigente = "Vigente";
+                    objSal.Vigente = "Vigente";
                 }
                 else if (vigente == "False")
                 {
-                    objCont.Vigente = "Vencido";
+                    objSal.Vigente = "Vencido";
                 }
 
                 if (declaracionSalud == "True")
                 {
-                    objCont.DeclaracionSalud = "Presenta";
+                    objSal.DeclaracionSalud = "Presenta";
                 }
                 else if (declaracionSalud == "False")
                 {
-                    objCont.DeclaracionSalud = "No Presenta";
+                    objSal.DeclaracionSalud = "No Presenta";
                 }
 
-                objCont.PrimaAnual = registros[8].ToString();
-                objCont.PrimaMensual = registros[9].ToString();
-                objCont.Observaciones = registros[10].ToString();
+                objSal.PrimaAnual = registros[8].ToString();
+                objSal.PrimaMensual = registros[9].ToString();
+                objSal.Observaciones = registros[10].ToString();
 
-                contratos.Add(objCont);
+                contratos.Add(objSal);
             }
             return contratos;
-        }*/
+        }
 
         public string[] datosPoliza(string nombrePlan)
         {

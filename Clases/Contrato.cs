@@ -218,5 +218,7 @@ namespace Clases
 
         public abstract bool agregarContrato();
 
+        public abstract bool editarContrato();
+
     }
 }

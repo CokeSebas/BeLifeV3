@@ -4,8 +4,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BeLifeV2"
-        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="BeLifeV2.editarCliente"
+        xmlns:local="clr-namespace:Vistas"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="Vistas.editarCliente"
           Icon="Images\icono_main.png"
         mc:Ignorable="d"
          Title="Modificar Datos Cliente" Height="410" Width="890.4">

@@ -17,7 +17,7 @@ using MahApps.Metro.Behaviours;
 using MahApps.Metro.Actions;
 using Clases;
 
-namespace BeLifeV2
+namespace Vistas
 {
     /// <summary>
     /// Lógica de interacción para editarCliente.xaml

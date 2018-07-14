@@ -29,5 +29,21 @@ namespace Clases
             }
         }
 
+        public override bool editarContrato()
+        {
+            string campos = "CodigoPlan = (SELECT idPlan FROM [Plan] WHERE Nombre = '" + CodigoPlan + "'),  " +
+                "DeclaracionSalud = " + DeclaracionSalud + ", PrimaAnual = " + PrimaAnual.Replace(",", ".") + ", " +
+                "PrimaMensual = " + PrimaMensual.Replace(",", ".") + ", Observaciones = '" + Observaciones + "' ";
+            string condicion = " Numero = '" + NumeroContrato + "';";
+            bool edita = objConec.actualizar("Contrato", campos, condicion);
+            if (edita == true)
+            {
+                return edita;
+            }
+            else
+            {
+                return edita;
+            }
+        }
     }
 }

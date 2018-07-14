@@ -24,7 +24,7 @@
                 <Image Source="Images/Add_User.png" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" />
             </DockPanel>
             <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" >
-                <Button x:Name="btn_editar_cliente" Style="{DynamicResource MetroWindowButtonStyle}" Width="148"  Height="40" VerticalAlignment="Top" >
+                <Button x:Name="btn_editar_cliente" Style="{DynamicResource MetroWindowButtonStyle}" Width="148"  Height="40" VerticalAlignment="Top" Click="btn_editar_cliente_Click" >
                     <Button.ToolTip>
                         <ToolTip>
                             <StackPanel>
@@ -38,7 +38,7 @@
                 <Image Source="Images/Edit_clie.png" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" />
             </DockPanel>
             <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" >
-                <Button x:Name="btn_listar_cliente" Style="{DynamicResource MetroWindowButtonStyle}" Width="148"  Height="40" VerticalAlignment="Top"  >
+                <Button x:Name="btn_listar_cliente" Style="{DynamicResource MetroWindowButtonStyle}" Width="148"  Height="40" VerticalAlignment="Top" Click="btn_listar_cliente_Click"  >
                     <Button.ToolTip>
                         <ToolTip>
                             <StackPanel>
@@ -72,7 +72,7 @@
             <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" >
                 <Image Source="Images/Edit_contrato.png" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" />
                 <!--<Button x:Name="btn_editar_contrato" Content="Editar Contrato" Click="btn_editar_contrato_Click" />-->
-                <Button x:Name="btn_editar_contrato" Style="{DynamicResource MetroWindowButtonStyle}" Width="90" Height="40" VerticalAlignment="Top"  >
+                <Button x:Name="btn_editar_contrato" Style="{DynamicResource MetroWindowButtonStyle}" Width="90" Height="40" VerticalAlignment="Top" Click="btn_editar_contrato_Click"  >
                     <Button.ToolTip>
                         <ToolTip>
                             <StackPanel>
@@ -86,7 +86,7 @@
             </DockPanel>
             <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" >
                 <Image Source="Images/listar_cliente.png" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" />
-                <Button x:Name="btn_listar_contrato" Style="{DynamicResource MetroWindowButtonStyle}" Width="90" Height="40" VerticalAlignment="Top"  >
+                <Button x:Name="btn_listar_contrato" Style="{DynamicResource MetroWindowButtonStyle}" Width="90" Height="40" VerticalAlignment="Top" Click="btn_listar_contrato_Click"  >
                     <Button.ToolTip>
                         <ToolTip>
                             <StackPanel>

@@ -17,7 +17,7 @@ using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.Behaviours;
 using MahApps.Metro.Actions;
 
-namespace BeLifeV2
+namespace Vistas
 {
     /// <summary>
     /// Lógica de interacción para ListarCliente.xaml

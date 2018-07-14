@@ -40,5 +40,30 @@ namespace Clases
             }
         }
 
+        public override bool editarContrato()
+        {
+            string campos = "CodigoPlan = (SELECT idPlan FROM [Plan] WHERE Nombre = '" + CodigoPlan + "') " + 
+                ", PrimaAnual = " + PrimaAnual.Replace(",", ".") + ", " +
+                "PrimaMensual = " + PrimaMensual.Replace(",", ".") + ", Observaciones = '" + Observaciones + "' ";
+            string condicion = " Numero = '" + NumeroContrato + "';";
+            bool edita = objConec.actualizar("Contrato", campos, condicion);
+
+            string campos1 = "IdMarca =" + Marca
+                            + ", IdModelo = (SELECT IdModelo FROM ModeloVehiculo WHERE Descripcion = '" + Modelo + "')," +
+                            "Anho = " + Anio + "";
+            string condicion1 = "Patente = '" + Patente + "';";
+
+            bool edita1 = objConec.actualizar("Vehiculo",campos1,condicion1);
+
+            
+            if (edita == true)
+            {
+                return edita;
+            }
+            else
+            {
+                return edita;
+            }
+        }
     }
 }

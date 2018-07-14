@@ -39,5 +39,33 @@ namespace Vistas
             addContrato.Owner = this;
             addContrato.ShowDialog();
         }
+
+        private void btn_editar_contrato_Click(object sender, RoutedEventArgs e)
+        {
+            editarContrato editCont = new editarContrato();
+            editCont.Owner = this;
+            editCont.ShowDialog();
+        }
+
+        private void btn_editar_cliente_Click(object sender, RoutedEventArgs e)
+        {
+            editarCliente editCli = new editarCliente();
+            editCli.Owner = this;
+            editCli.ShowDialog();
+        }
+
+        private void btn_listar_cliente_Click(object sender, RoutedEventArgs e)
+        {
+            ListarCliente lisCli = new ListarCliente();
+            lisCli.Owner = this;
+            lisCli.ShowDialog();
+        }
+
+        private void btn_listar_contrato_Click(object sender, RoutedEventArgs e)
+        {
+            ListarContrato listCont = new ListarContrato();
+            listCont.Owner = this;
+            listCont.ShowDialog();
+        }
     }
 }

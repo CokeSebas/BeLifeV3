@@ -45,5 +45,31 @@ namespace Clases
                 return guarda;
             }
         }
+
+        public override bool editarContrato()
+        {
+            string campos = "CodigoPlan = (SELECT idPlan FROM [Plan] WHERE Nombre = '" + CodigoPlan + "') " +
+                ", PrimaAnual = " + PrimaAnual.Replace(",", ".") + ", " +
+                "PrimaMensual = " + PrimaMensual.Replace(",", ".") + ", Observaciones = '" + Observaciones + "' ";
+            string condicion = " Numero = '" + NumeroContrato + "';";
+            bool edita = objConec.actualizar("Contrato", campos, condicion);
+
+            string campos1 = "Anho = " + Anio + ", Direccion = '" + Direccion + "', ValorInmueble= " + ValorInmu 
+                             + ", ValorContenido = "+ ValorConte + ", IdRegion = " + Region 
+                             + ", idComuna = (SELECT idComuna FROM Comuna WHERE NombreComuna = '" + Comuna + "') ";
+
+            string condicion1 = "CodigoPostal = '" + CodigoPostal+ "';";
+
+            bool edita1 = objConec.actualizar("Vivienda", campos1, condicion1);
+
+            if (edita == true)
+            {
+                return edita;
+            }
+            else
+            {
+                return edita;
+            }
+        }
     }
 }

@@ -17,7 +17,7 @@ using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.Behaviours;
 using MahApps.Metro.Actions;
 
-namespace BeLifeV2
+namespace Vistas
 {
     /// <summary>
     /// Lógica de interacción para ListarContrato.xaml
@@ -26,7 +26,7 @@ namespace BeLifeV2
     {
         Conexion conec = new Conexion();
 
-        //private List<Contrato> contratos = new List<Contrato>();
+        private List<Contrato> contratos = new List<Contrato>();
 
         private int _largo = 0;
 
@@ -48,9 +48,9 @@ namespace BeLifeV2
             InitializeComponent();
 
             listCombo();
-            /*contratos = conec.ListarContratos();
+            contratos = conec.ListarContratos();
             dtgContrato.ItemsSource = contratos;
-            Largo = contratos.Count();*/
+            Largo = contratos.Count();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
 
@@ -118,10 +118,10 @@ namespace BeLifeV2
             string filtro = "RutCliente = '" + rut + "';";
             dtgContrato.ItemsSource = null;
 
-            /*contratos = conec.filtroContratos(filtro);
+            contratos = conec.filtroContratos(filtro);
 
             dtgContrato.ItemsSource = contratos;
-            Largo = contratos.Count();*/
+            Largo = contratos.Count();
         }
 
         private void cmbNumContrato_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -130,9 +130,9 @@ namespace BeLifeV2
             string numeroC = cmbNumContrato.SelectedItem.ToString();
             string filtro = " Numero = '" + numeroC + "';";
 
-            /*contratos = conec.filtroContratos(filtro);
+            contratos = conec.filtroContratos(filtro);
             dtgContrato.ItemsSource = contratos;
-            Largo = contratos.Count();*/
+            Largo = contratos.Count();
         }
 
         private void cmbPoliza_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -141,9 +141,9 @@ namespace BeLifeV2
             string poliza = cmbPoliza.SelectedItem.ToString();
             string filtro = "CodigoPlan = (SELECT idPlan FROM [Plan] WHERE PolizaActual = '" + poliza + "')";
 
-            /*contratos = conec.filtroContratos(filtro);
+            contratos = conec.filtroContratos(filtro);
             dtgContrato.ItemsSource = contratos;
-            Largo = contratos.Count();*/
+            Largo = contratos.Count();
         }
 
         private async void BtnCerrar_Click(object sender, RoutedEventArgs e)
